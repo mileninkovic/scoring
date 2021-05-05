@@ -1,8 +1,15 @@
+let buttons = document.getElementsByClassName("btn");
+let buttonsArray = Array.from(buttons);
 let score = 0;
+
+buttonsArray.forEach(btn => {
+  btn.addEventListener("click", function() {
+    btnNext(this);
+  })
+});
 
 let btnNext = (ele) => {
   ele.parentElement.classList.toggle('hidden');
-  ele.parentElement.nextElementSibling.classList.toggle('hidden');
 
   for (i = 0; i < ele.parentElement.length; i++) {
     if (ele.parentElement.elements[i].checked) {
@@ -10,7 +17,12 @@ let btnNext = (ele) => {
     }
   }
 
-  if (ele.parentElement.id === "spm3") {
-    document.body.innerHTML = "Du scorede: " + score + " point!";
+  if (ele.parentElement.id !== "q3") {
+    ele.parentElement.nextElementSibling.classList.toggle('hidden');
+  }
+  
+  if (ele.parentElement.id === "q3") {
+    document.body.innerHTML = "Your scored: " + score + " points!";
   }
 }
+
